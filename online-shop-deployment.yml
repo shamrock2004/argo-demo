@@ -3,7 +3,7 @@ apiVersion: apps/v1
 metadata:
   name: online-shop
 spec:
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
       app: online-shop-pod
