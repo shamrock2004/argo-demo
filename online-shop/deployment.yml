@@ -1,0 +1,28 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: online-shop
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: online-shop-pod
+
+  template:
+    metadata:
+      labels:
+        app: online-shop-pod
+    spec:
+      containers:
+        - name: online-shop-ct
+          image: amitabhdevops/online_shop:latest
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
