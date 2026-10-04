@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: frontend-project
+  namespace: argocd
+spec:
+  description: This project holds frontend App
+  sourceRepos:
+    - https://github.com/shamrock2004/argo-demo.git
+  destinations:
+    - namespace: frontend
+    - https://172.31.91.60:33893
+  clusterResourceWhiteList:
+    - group: "*"
+      kind: "*"
+  namespaceResourceWhiteList:
+    - group: "*"
+      kind: "*"
+  roles:
+    - name: frontend-admin
+      description: Admin for frontend team
+    - p,proj:frontend-proj:frontend-admin, applications, *, frontend-team/*, allow
