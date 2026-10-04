@@ -1,0 +1,20 @@
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: nginx-app
+  namespace: argocd
+spec:
+  project: frontend-project
+  source:
+    repoURL: https://github.com/shamrock2004/argo-demo.git
+    targetRevision: main
+    path: nginx/
+  destination:
+    server: https://172.31.91.60:33893
+    namespace: nginx-frontend
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
